@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8"><meta name="robots" content="noindex">
+<title>Kontakt</title>
+<style>
+ body{font:15px/1.45 Arial,Helvetica,sans-serif;margin:0;padding:10px 14px;background:#fff8e1;color:#1d1d1d}
+ .z{margin:0 0 8px} b{color:#7a4b00} .m{color:#666;font-size:13px}
+</style></head>
+<body>
+<div class="z"><b>STAND:</b> <span id="stand"></span></div>
+<div class="z"><b>ZIEL:</b> <span id="ziel"></span></div>
+<div class="m">Letzter Kontakt: <span id="letzter"></span> · Phase: <span id="phase"></span> · Fällig: <span id="faellig"></span></div>
+<script>
+// Daten kommen nur im #-Teil der Adresse (wird nie an den Server geschickt). Format: #stand=...&ziel=...
+var p = new URLSearchParams(location.hash.slice(1));
+["stand","ziel","letzter","phase","faellig"].forEach(function(k){
+  var v = p.get(k) || ""; if (/^\{ld_/.test(v)) v = "";
+  document.getElementById(k).textContent = v || "–";
+});
+</script>
+</body></html>
